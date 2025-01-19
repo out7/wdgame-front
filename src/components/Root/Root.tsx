@@ -1,11 +1,12 @@
 'use client';
 
-import {PropsWithChildren, useEffect} from "react";
+import {PropsWithChildren, useEffect, useState } from "react";
 import { init, initData } from '@telegram-apps/sdk-react';
 import { useDidMount } from "@/hooks/useDidMount";
 import { useClientOnce } from "@/hooks/useClientOnce";
 
 function RootInner({ children }: PropsWithChildren) {
+  const [authData, setAuthData] = useState(null);
 
   useClientOnce(() => {
     init();
@@ -21,10 +22,15 @@ function RootInner({ children }: PropsWithChildren) {
         },
         body: JSON.stringify({ data: initData.raw() }),
       });
+
+      const data = await response.json();
+      setAuthData(data);
     };
 
     fetchData();
   }, []);
+
+  console.log(authData);
 
   return (
     <>
