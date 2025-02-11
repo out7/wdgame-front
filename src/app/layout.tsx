@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import { PropsWithChildren } from "react";
 import { Root } from "@/components/Root/Root";
 

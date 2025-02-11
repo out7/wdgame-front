@@ -1,13 +1,13 @@
-import Phaser from "phaser";
+import { Scene } from 'phaser';
 
-export default class City extends Phaser.Scene {
+export default class City extends Scene {
   constructor() {
     super({ key: 'City' });
   }
 
   create() {
     this.add.text(10, 10, 'Добро пожаловать в город!', {
-      fontSize: '16px',
+      fontSize: '36px',
       color: '#fff'
     });
   }
