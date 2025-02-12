@@ -38,5 +38,5 @@ export function Root(props: PropsWithChildren) {
   const didMount = useDidMount();
   return didMount ? (
     <RootInner {...props}/>
-  ) : <div className="">Загрузка</div>;
+  ) : <div className="">Загрузка...</div>;
 }

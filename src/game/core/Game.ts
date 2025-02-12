@@ -1,12 +1,12 @@
 import { AUTO, Game, Types } from 'phaser';
 import Scale = Phaser.Scale;
-import City from "@/game/scenes/city";
-import Preloader from "@/game/scenes/preloader";
+import CityScene from "@/game/scenes/CityScene";
+import PreloaderScene from "@/game/scenes/PreloaderScene";
 
 const config: Types.Core.GameConfig = {
   type: AUTO,
-  width: 1170,
-  height: 2196,
+  // width: 1170,
+  // height: 2196,
   parent: 'game-container',
   scale: {
     width: 1170,
@@ -19,13 +19,14 @@ const config: Types.Core.GameConfig = {
       width: 1170,
       height: 2196
     },
-    mode: Scale.FIT,
-    autoCenter: Scale.CENTER_BOTH,
+    mode: Scale.WIDTH_CONTROLS_HEIGHT,
+    autoCenter: Scale.CENTER_VERTICALLY,
   },
   backgroundColor: '#ccc',
+  canvasStyle: `display: block; width: 100%;`,
   scene: [
-    Preloader,
-    City
+    PreloaderScene,
+    CityScene
   ]
 };
 

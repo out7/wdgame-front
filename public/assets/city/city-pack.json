@@ -1,0 +1,48 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "city/alliance.png",
+                "type": "image",
+                "key": "alliance"
+            },
+            {
+                "url": "city/barracks.png",
+                "type": "image",
+                "key": "barracks"
+            },
+            {
+                "url": "city/construct.png",
+                "type": "image",
+                "key": "construct"
+            },
+            {
+                "url": "city/globe.png",
+                "type": "image",
+                "key": "globe"
+            },
+            {
+                "url": "city/main.png",
+                "type": "image",
+                "key": "main"
+            },
+            {
+                "url": "city/map.png",
+                "type": "image",
+                "key": "map"
+            },
+            {
+                "url": "city/pvp.png",
+                "type": "image",
+                "key": "pvp"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}

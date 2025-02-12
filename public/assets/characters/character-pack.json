@@ -1,0 +1,26 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "characters/char-test.png",
+                "frameConfig": {
+                    "frameWidth": 450,
+                    "frameHeight": 450,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "char-test"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
