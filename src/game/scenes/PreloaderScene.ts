@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import { EventBus } from "@/game/core/EventBus";
 
 export default class PreloaderScene extends Scene {
   constructor() {
@@ -13,6 +14,7 @@ export default class PreloaderScene extends Scene {
   }
 
   create() {
+    EventBus.emit('current-scene-ready', this);
     this.scene.start('City'); // После загрузки ресурсов, сразу стартуем следующую сцену
   }
 }

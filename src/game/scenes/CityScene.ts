@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import { EventBus } from "@/game/core/EventBus";
 
 export default class CityScene extends Scene {
   constructor() {
@@ -63,7 +64,7 @@ export default class CityScene extends Scene {
     const flagSprite = this.add.sprite(778, 496, 'flag-ru').setScale(1);
     flagSprite.play({ key: 'flag', repeat: -1 });
 
-    // EventBus.emit('current-scene-ready', this);
+    EventBus.emit('current-scene-ready', this);
   }
 
   update() {
