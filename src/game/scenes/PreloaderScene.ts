@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { EventBus } from "@/game/core/EventBus";
+import {loadAvatar} from "@/game/lib/utils";
 
 export default class PreloaderScene extends Scene {
   constructor() {
@@ -11,6 +12,8 @@ export default class PreloaderScene extends Scene {
     this.load.pack("map-pack", "city/city-pack.json");
     this.load.pack("flag-pack", "flags/flag-pack.json");
     this.load.spritesheet("plane", "characters/char-test.png", { frameWidth: 450, frameHeight: 450 });
+
+    loadAvatar(this);
   }
 
   create() {

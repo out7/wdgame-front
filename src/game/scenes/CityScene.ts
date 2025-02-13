@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { EventBus } from "@/game/core/EventBus";
+import { setAvatar } from "@/game/lib/utils";
 
 export default class CityScene extends Scene {
   constructor() {
@@ -63,6 +64,9 @@ export default class CityScene extends Scene {
 
     const flagSprite = this.add.sprite(778, 496, 'flag-ru').setScale(1);
     flagSprite.play({ key: 'flag', repeat: -1 });
+
+    setAvatar(this);
+
 
     EventBus.emit('current-scene-ready', this);
   }
