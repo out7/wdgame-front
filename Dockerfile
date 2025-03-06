@@ -1,41 +1,24 @@
-# Используем Node.js версии 20.18.0 как базовый образ
-FROM node:20.18.0-alpine AS builder
+FROM imbios/bun-node:1.2.4-20.18.3-alpine AS builder
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
-COPY package*.json ./
+COPY package.json bun.lock ./
 
-# Устанавливаем зависимости
-RUN npm install --frozen-lockfile
+RUN bun install --frozen-lockfile
 
-# Копируем остальные файлы проекта
 COPY . .
+RUN bun run build
 
-# Билдим приложение
-RUN npm run build
+FROM imbios/bun-node:1.2.4-20.18.3-alpine AS runner
 
-# Устанавливаем production-зависимости
-RUN npm prune --production
-
-# Этап запуска приложения
-FROM node:20.18.0-alpine AS runner
-
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем нужные файлы из предыдущего этапа (builder)
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-# Указываем переменные окружения для production
 ENV NODE_ENV=production
-
-# Указываем порт, на котором работает Next.js
 EXPOSE 3000
 
-# Запускаем приложение
-CMD ["npm", "start"]
+CMD ["bun", "run", "start"]
