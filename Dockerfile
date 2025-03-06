@@ -1,24 +1,23 @@
-FROM imbios/bun-node:1.2.4-20.18.3-alpine AS builder
+FROM oven/bun:1.2.4-alpine AS base
 
+FROM base AS deps
 WORKDIR /app
-
 COPY package.json bun.lock ./
-
 RUN bun install --frozen-lockfile
 
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-FROM imbios/bun-node:1.2.4-20.18.3-alpine AS runner
-
+FROM base AS runner
 WORKDIR /app
-
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-
 ENV NODE_ENV=production
-EXPOSE 3000
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-CMD ["bun", "run", "start"]
+EXPOSE 3000
+CMD ["bun", "server.js"]
