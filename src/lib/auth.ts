@@ -4,6 +4,7 @@ import { createSession } from "@/lib/session";
 
 export async function authTMA(initData: string | undefined) {
   try {
+    console.log(`URL: ${process.env.BACKEND_URL}/auth/tma`)
     const response = await fetch(`${process.env.BACKEND_URL}/auth/tma`, {
       method: 'POST',
       headers: {
