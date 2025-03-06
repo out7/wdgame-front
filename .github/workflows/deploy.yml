@@ -26,15 +26,15 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
 
-
-#      - name: Set up SSH
-#        uses: webfactory/ssh-agent@v0.5.3
-#        with:
-#          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-#
-#      - name: Deploy to server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no user@mysite.ru << 'EOF'
-#            cd /path/to/backend && git pull origin main
-#            docker-compose down && docker-compose up -d --build
-#          EOF
+      - name: Connect and deploy via SSH
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            cd /opt/wdgame-devops
+            git pull origin main
+            docker compose pull frontend
+            docker compose up -d --force-recreate frontend
